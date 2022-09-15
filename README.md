@@ -6,7 +6,7 @@ Connector Version: 1\.0\.2
 Product Vendor: Airlock  
 Product Name: Airlock Digital  
 Product Version Supported (regex): "\.\*"  
-Minimum Product Version: 4\.8\.24304  
+Minimum Product Version: 5\.3\.0  
 
 This app provides investigative, containment, and management actions for Airlock Digital's Execution Control & Allow listing endpoint product
 
