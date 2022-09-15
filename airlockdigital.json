@@ -9,6 +9,11 @@
     "product_name": "Airlock Digital",
     "product_version_regex": ".*",
     "publisher": "Domenico Perre & Airlock Digital Pty Ltd",
+    "contributors": [
+      {
+        "name": "Trae Horton"
+      }
+    ],
     "license": "Copyright (c) Domenico Perre & Airlock Digital Pty Ltd, 2020",
     "app_version": "1.0.2",
     "utctime_updated": "2022-01-07T20:26:14.000000Z",
