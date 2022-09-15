@@ -39,7 +39,8 @@ class AirlockDigitalConnector(BaseConnector):
         if response.status_code == 200:
             return RetVal(phantom.APP_SUCCESS, {})
 
-        return RetVal(action_result.set_status(phantom.APP_ERROR, "Status Code: {0}. Empty response and no information in the header".format(response.status_code)), None)
+        return RetVal(action_result.set_status(phantom.APP_ERROR, "Status Code: {0}. Empty response and no information in the header".format
+                                               (response.status_code)), None)
 
     def _process_html_response(self, response, action_result):
 
@@ -483,7 +484,8 @@ class AirlockDigitalConnector(BaseConnector):
             req_method = "post"
 
         else:
-            return action_result.set_status(phantom.APP_ERROR, "Invalid policy type, please provide policy type either application, baseline, group, or blocklist")
+            return action_result.set_status(phantom.APP_ERROR, 
+                          "Invalid policy type, please provide policy type either application, baseline, group, or blocklist")
 
         # Make the request
         self.save_progress("Making request to URL: {} with request type of {}.".format(url, policy_type))
@@ -657,15 +659,17 @@ class AirlockDigitalConnector(BaseConnector):
 
         # make rest call
         # If more than one parameter is set
-        if len(list(param_var.keys())) >= 1:
+        if len(param_var.keys()) >= 1:
             if param_var["hostname"] != "all":
                 self.save_progress("Requested parameters: {}".format(param_var))
-                ret_val, response = self._make_rest_call(AIRLOCK_AGENT_FIND_ENDPOINT, action_result, json=param_var, headers=self._header_var, method="post")
+                ret_val, response = self._make_rest_call(AIRLOCK_AGENT_FIND_ENDPOINT, action_result, 
+                                                         json=param_var, headers=self._header_var, method="post")
             else:
                 param_var.pop('hostname')
                 self.save_progress("Requested parameters: {}".format(param_var))
                 self.save_progress("All has been specified in hostname, so returning all hosts")
-                ret_val, response = self._make_rest_call(AIRLOCK_AGENT_FIND_ENDPOINT, action_result, headers=self._header_var, method="post")
+                ret_val, response = self._make_rest_call(AIRLOCK_AGENT_FIND_ENDPOINT, action_result, 
+                                                         headers=self._header_var, method="post")
 
         if (phantom.is_fail(ret_val)):
             self.debug_print('Failed to list endpoints for Airlock Digital')
@@ -697,7 +701,8 @@ class AirlockDigitalConnector(BaseConnector):
             "otpid": otpid
         }
         # make rest call
-        ret_val, response = self._make_rest_call(AIRLOCK_OTP_REVOKE_ENDPOINT, action_result, params=param_var, headers=self._header_var, method="post")
+        ret_val, response = self._make_rest_call(AIRLOCK_OTP_REVOKE_ENDPOINT, action_result, 
+                                                 params=param_var, headers=self._header_var, method="post")
 
         if (phantom.is_fail(ret_val)):
             self.debug_print("Failed to revoke OTP for Airlock Digital")
@@ -732,7 +737,8 @@ class AirlockDigitalConnector(BaseConnector):
         }
 
         # make rest call
-        ret_val, response = self._make_rest_call(AIRLOCK_OTP_RETRIEVE_ENDPOINT, action_result, params=param_var, headers=self._header_var, method="post")
+        ret_val, response = self._make_rest_call(AIRLOCK_OTP_RETRIEVE_ENDPOINT, action_result, params=param_var, 
+                                                 headers=self._header_var, method="post")
 
         if (phantom.is_fail(ret_val)):
             self.debug_print("Failed to retrieve OTP for Airlock Digital")
@@ -773,7 +779,8 @@ class AirlockDigitalConnector(BaseConnector):
         data_var = json.dumps(data_var)
 
         # make rest call
-        ret_val, response = self._make_rest_call(AIRLOCK_HASH_QUERY_ENDPOINT, action_result, headers=header_var, method="post", data=data_var)
+        ret_val, response = self._make_rest_call(AIRLOCK_HASH_QUERY_ENDPOINT, action_result, headers=header_var, 
+                                                 method="post", data=data_var)
 
         if (phantom.is_fail(ret_val)):
             self.debug_print("Failed to lookup hash for Airlock Digital")
@@ -906,13 +913,13 @@ if __name__ == '__main__':
             r2 = requests.post(login_url, verify=False, data=data, headers=headers)
             session_id = r2.cookies['sessionid']
         except Exception as e:
-            print(("Unable to get session id from the platform. Error: " + str(e)))
+            print("Unable to get session id from the platform. Error: " + str(e))
             exit(1)
 
     with open(args.input_test_json) as f:
         in_json = f.read()
         in_json = json.loads(in_json)
-        print((json.dumps(in_json, indent=4)))
+        print(json.dumps(in_json, indent=4))
 
         connector = AirlockDigitalConnector()
         connector.print_progress_message = True
@@ -922,6 +929,6 @@ if __name__ == '__main__':
             connector._set_csrf_info(csrftoken, headers['Referer'])
 
         ret_val = connector._handle_action(json.dumps(in_json), None)
-        print((json.dumps(json.loads(ret_val), indent=4)))
+        print(json.dumps(json.loads(ret_val), indent=4))
 
     exit(0)
