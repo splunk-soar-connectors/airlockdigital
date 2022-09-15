@@ -3,16 +3,16 @@
 # Licensed under Apache 2.0 (https://www.apache.org/licenses/LICENSE-2.0.txt)
 
 import json
-import requests
 import sys
 
 import phantom.app as phantom
+import requests
 
-from airlockdigital_consts import *
 from bs4 import BeautifulSoup, UnicodeDammit
 from phantom.action_result import ActionResult
 from phantom.base_connector import BaseConnector
 
+from airlockdigital_consts import *
 
 class RetVal(tuple):
     def __new__(cls, val1, val2=None):
