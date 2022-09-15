@@ -7,7 +7,6 @@ import sys
 
 import phantom.app as phantom
 import requests
-
 from bs4 import BeautifulSoup, UnicodeDammit
 from phantom.action_result import ActionResult
 from phantom.base_connector import BaseConnector
@@ -869,8 +868,9 @@ class AirlockDigitalConnector(BaseConnector):
 
 if __name__ == '__main__':
 
-    import pudb
     import argparse
+    
+    import pudb
 
     pudb.set_trace()
 
