@@ -2,7 +2,7 @@
 # Airlock Digital
 
 Publisher: Domenico Perre & Airlock Digital Pty Ltd  
-Connector Version: 1\.0\.1  
+Connector Version: 1\.0\.2  
 Product Vendor: Airlock  
 Product Name: Airlock Digital  
 Product Version Supported (regex): "\.\*"  
