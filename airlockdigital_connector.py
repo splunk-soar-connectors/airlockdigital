@@ -2,17 +2,16 @@
 #
 # Licensed under Apache 2.0 (https://www.apache.org/licenses/LICENSE-2.0.txt)
 
-# Phantom App imports
-import phantom.app as phantom
-from phantom.base_connector import BaseConnector
-from phantom.action_result import ActionResult
-
-# This connector imports
-from airlockdigital_consts import *
-import requests
 import json
-from bs4 import BeautifulSoup, UnicodeDammit
+import requests
 import sys
+
+import phantom.app as phantom
+
+from airlockdigital_consts import *
+from bs4 import BeautifulSoup, UnicodeDammit
+from phantom.action_result import ActionResult
+from phantom.base_connector import BaseConnector
 
 
 class RetVal(tuple):
