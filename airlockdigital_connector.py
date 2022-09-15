@@ -484,7 +484,7 @@ class AirlockDigitalConnector(BaseConnector):
             req_method = "post"
 
         else:
-            return action_result.set_status(phantom.APP_ERROR, 
+            return action_result.set_status(phantom.APP_ERROR,
                           "Invalid policy type, please provide policy type either application, baseline, group, or blocklist")
 
         # Make the request
@@ -662,13 +662,13 @@ class AirlockDigitalConnector(BaseConnector):
         if len(param_var.keys()) >= 1:
             if param_var["hostname"] != "all":
                 self.save_progress("Requested parameters: {}".format(param_var))
-                ret_val, response = self._make_rest_call(AIRLOCK_AGENT_FIND_ENDPOINT, action_result, 
+                ret_val, response = self._make_rest_call(AIRLOCK_AGENT_FIND_ENDPOINT, action_result,
                                                          json=param_var, headers=self._header_var, method="post")
             else:
                 param_var.pop('hostname')
                 self.save_progress("Requested parameters: {}".format(param_var))
                 self.save_progress("All has been specified in hostname, so returning all hosts")
-                ret_val, response = self._make_rest_call(AIRLOCK_AGENT_FIND_ENDPOINT, action_result, 
+                ret_val, response = self._make_rest_call(AIRLOCK_AGENT_FIND_ENDPOINT, action_result,
                                                          headers=self._header_var, method="post")
 
         if (phantom.is_fail(ret_val)):
@@ -701,7 +701,7 @@ class AirlockDigitalConnector(BaseConnector):
             "otpid": otpid
         }
         # make rest call
-        ret_val, response = self._make_rest_call(AIRLOCK_OTP_REVOKE_ENDPOINT, action_result, 
+        ret_val, response = self._make_rest_call(AIRLOCK_OTP_REVOKE_ENDPOINT, action_result,
                                                  params=param_var, headers=self._header_var, method="post")
 
         if (phantom.is_fail(ret_val)):
@@ -737,7 +737,7 @@ class AirlockDigitalConnector(BaseConnector):
         }
 
         # make rest call
-        ret_val, response = self._make_rest_call(AIRLOCK_OTP_RETRIEVE_ENDPOINT, action_result, params=param_var, 
+        ret_val, response = self._make_rest_call(AIRLOCK_OTP_RETRIEVE_ENDPOINT, action_result, params=param_var,
                                                  headers=self._header_var, method="post")
 
         if (phantom.is_fail(ret_val)):
@@ -779,7 +779,7 @@ class AirlockDigitalConnector(BaseConnector):
         data_var = json.dumps(data_var)
 
         # make rest call
-        ret_val, response = self._make_rest_call(AIRLOCK_HASH_QUERY_ENDPOINT, action_result, headers=header_var, 
+        ret_val, response = self._make_rest_call(AIRLOCK_HASH_QUERY_ENDPOINT, action_result, headers=header_var,
                                                  method="post", data=data_var)
 
         if (phantom.is_fail(ret_val)):
