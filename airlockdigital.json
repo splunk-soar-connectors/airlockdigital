@@ -20,7 +20,7 @@
     "package_name": "phantom_airlockdigital",
     "python_version": "3",
     "main_module": "airlockdigital_connector.py",
-    "min_phantom_version": "4.8.24304",
+    "min_phantom_version": "5.3.0",
     "app_wizard_version": "1.0.0",
     "configuration": {
         "apiKey": {
