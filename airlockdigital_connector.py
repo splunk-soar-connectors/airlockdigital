@@ -55,7 +55,7 @@ class AirlockDigitalConnector(BaseConnector):
             split_lines = error_text.split('\n')
             split_lines = [x.strip() for x in split_lines if x.strip()]
             error_text = '\n'.join(split_lines)
-        except:
+        except Exception:
             error_text = "Cannot parse error details"
 
         message = "Status Code: {0}. Data from server:\n{1}\n".format(status_code, self._handle_py_ver_compat_for_input_str(error_text))
@@ -69,12 +69,12 @@ class AirlockDigitalConnector(BaseConnector):
         # Try a json parse
         try:
             resp_json = r.json()
-        except:
+        except Exception:
             # If I can't parse the json
             self.save_progress("Failed to parse json naturally")
             try:
                 resp_json = json.loads(self._handle_py_ver_compat_for_input_str(r.text).replace("\\", "\\\\"))
-            except:
+            except Exception:
                 return RetVal(action_result.set_status(phantom.APP_ERROR, "Unable to parse JSON response. {0}"
                               .format(self._get_error_message_from_exception(e))), None)
 
@@ -152,7 +152,7 @@ class AirlockDigitalConnector(BaseConnector):
             else:
                 error_code = ERR_CODE_MSG
                 error_msg = ERR_MSG_UNAVAILABLE
-        except:
+        except Exception:
             error_code = ERR_CODE_MSG
             error_msg = ERR_MSG_UNAVAILABLE
 
@@ -160,7 +160,7 @@ class AirlockDigitalConnector(BaseConnector):
             error_msg = self._handle_py_ver_compat_for_input_str(error_msg)
         except TypeError:
             error_msg = TYPE_ERR_MSG
-        except:
+        except Exception:
             error_msg = ERR_MSG_UNAVAILABLE
 
         try:
@@ -168,7 +168,7 @@ class AirlockDigitalConnector(BaseConnector):
                 error_text = "Error Message: {0}".format(error_msg)
             else:
                 error_text = "Error Code: {0}. Error Message: {1}".format(error_code, error_msg)
-        except:
+        except Exception:
             self.debug_print(PARSE_ERR_MSG)
             error_text = PARSE_ERR_MSG
 
@@ -181,7 +181,7 @@ class AirlockDigitalConnector(BaseConnector):
                     return action_result.set_status(phantom.APP_ERROR, ERR_VALID_INT_MSG.format(key)), None
 
                 parameter = int(parameter)
-            except:
+            except Exception:
                 return action_result.set_status(phantom.APP_ERROR, ERR_VALID_INT_MSG.format(key)), None
 
             if parameter < 0:
@@ -210,10 +210,10 @@ class AirlockDigitalConnector(BaseConnector):
                             verify=config.get('verify_server_cert', False),
                             **kwargs)
         except requests.exceptions.InvalidSchema:
-            error_message = 'Error connecting to server. No connection adapters were found for %s' % (url)
+            error_message = 'Error connecting to server. No connection adapters were found for {}'.format(url)
             return RetVal(action_result.set_status(phantom.APP_ERROR, error_message), resp_json)
         except requests.exceptions.InvalidURL:
-            error_message = 'Error connecting to server. Invalid URL %s' % (url)
+            error_message = 'Error connecting to server. Invalid URL {}'.format(url)
             return RetVal(action_result.set_status(phantom.APP_ERROR, error_message), resp_json)
         except requests.exceptions.ConnectionError:
             error_message = 'Error Details: Connection Refused from the Server'
@@ -233,7 +233,7 @@ class AirlockDigitalConnector(BaseConnector):
         # make rest call
         ret_val, response = self._make_rest_call(url, action_result, params=None, headers=self._header_var, method="post")
 
-        if (phantom.is_fail(ret_val)):
+        if phantom.is_fail(ret_val):
             self.save_progress("Test Connectivity Failed")
             return action_result.get_status()
 
@@ -274,7 +274,7 @@ class AirlockDigitalConnector(BaseConnector):
         # Make the request
         ret_val, response = self._make_rest_call(url, action_result, json=request_json, headers=self._header_var, method="post")
 
-        if (phantom.is_fail(ret_val)):
+        if phantom.is_fail(ret_val):
             self.debug_print("Failed to unblock hash")
             return action_result.get_status()
 
@@ -308,7 +308,7 @@ class AirlockDigitalConnector(BaseConnector):
 
         self.save_progress("File hash var: {}".format(hash_param))
 
-        if (applicationid == "" or None):
+        if applicationid == "" or None:
             self.save_progress("No applicationid was specified, removing hash(es) from all application capture packages")
             url = AIRLOCK_HASH_APPLICATION_REMOVE_ALL_ENDPOINT
             request_json = {
@@ -327,7 +327,7 @@ class AirlockDigitalConnector(BaseConnector):
         # Make the request
         ret_val, response = self._make_rest_call(url, action_result, json=request_json, headers=self._header_var, method="post")
 
-        if (phantom.is_fail(ret_val)):
+        if phantom.is_fail(ret_val):
             self.debug_print("Failed to unblock hash")
             return action_result.get_status()
 
@@ -372,7 +372,7 @@ class AirlockDigitalConnector(BaseConnector):
         self.save_progress("Sending hash value to {}".format(AIRLOCK_HASH_BLOCKLIST_ADD_ENDPOINT))
         ret_val, response = self._make_rest_call(url, action_result, json=request_json, headers=self._header_var, method="post")
 
-        if (phantom.is_fail(ret_val)):
+        if phantom.is_fail(ret_val):
             self.debug_print("Failed to block hash")
             return action_result.get_status()
 
@@ -431,7 +431,7 @@ class AirlockDigitalConnector(BaseConnector):
         self.save_progress("Linking the new repository entry with the specified Application Capture")
         ret_val, response = self._make_rest_call(url2, action_result, json=request_json, headers=self._header_var, method="post")
 
-        if (phantom.is_fail(ret_val)):
+        if phantom.is_fail(ret_val):
             self.debug_print("Failed to add hash to application capture")
             return action_result.get_status()
 
@@ -473,12 +473,12 @@ class AirlockDigitalConnector(BaseConnector):
             req_method = "post"
 
         # If policy type is application
-        elif (policy_type == 'application'):
+        elif policy_type == 'application':
             url = AIRLOCK_APPLICATION_ENDPOINT
             req_method = "post"
 
         # If policy type is group
-        elif (policy_type == 'group'):
+        elif policy_type == 'group':
             url = AIRLOCK_GROUP_ENDPOINT
             req_method = "post"
 
@@ -490,7 +490,7 @@ class AirlockDigitalConnector(BaseConnector):
         self.save_progress("Making request to URL: {} with request type of {}.".format(url, policy_type))
         ret_val, response = self._make_rest_call(url, action_result, headers=self._header_var, method=req_method)
 
-        if (phantom.is_fail(ret_val)):
+        if phantom.is_fail(ret_val):
             self.debug_print("Failed to list identifiers")
             return action_result.get_status()
 
@@ -552,7 +552,7 @@ class AirlockDigitalConnector(BaseConnector):
         self.save_progress("Making request to URL: {}".format(url))
         ret_val, response = self._make_rest_call(url, action_result, json=json_body, headers=self._header_var, method="post")
 
-        if (phantom.is_fail(ret_val)):
+        if phantom.is_fail(ret_val):
             self.debug_print("Failed to request group list")
             return action_result.get_status()
 
@@ -591,7 +591,7 @@ class AirlockDigitalConnector(BaseConnector):
         self.save_progress("Making request to URL: {}".format(url))
         ret_val, response = self._make_rest_call(url, action_result, headers=self._header_var, json=json_body, method="post")
 
-        if (phantom.is_fail(ret_val)):
+        if phantom.is_fail(ret_val):
             self.debug_print("Failed to move endpoint")
             return action_result.get_status()
 
@@ -670,7 +670,7 @@ class AirlockDigitalConnector(BaseConnector):
                 ret_val, response = self._make_rest_call(AIRLOCK_AGENT_FIND_ENDPOINT, action_result,
                                                          headers=self._header_var, method="post")
 
-        if (phantom.is_fail(ret_val)):
+        if phantom.is_fail(ret_val):
             self.debug_print('Failed to list endpoints for Airlock Digital')
             return action_result.get_status()
 
@@ -703,7 +703,7 @@ class AirlockDigitalConnector(BaseConnector):
         ret_val, response = self._make_rest_call(AIRLOCK_OTP_REVOKE_ENDPOINT, action_result,
                                                  params=param_var, headers=self._header_var, method="post")
 
-        if (phantom.is_fail(ret_val)):
+        if phantom.is_fail(ret_val):
             self.debug_print("Failed to revoke OTP for Airlock Digital")
             return action_result.get_status()
 
@@ -739,7 +739,7 @@ class AirlockDigitalConnector(BaseConnector):
         ret_val, response = self._make_rest_call(AIRLOCK_OTP_RETRIEVE_ENDPOINT, action_result, params=param_var,
                                                  headers=self._header_var, method="post")
 
-        if (phantom.is_fail(ret_val)):
+        if phantom.is_fail(ret_val):
             self.debug_print("Failed to retrieve OTP for Airlock Digital")
             return action_result.get_status()
 
@@ -781,7 +781,7 @@ class AirlockDigitalConnector(BaseConnector):
         ret_val, response = self._make_rest_call(AIRLOCK_HASH_QUERY_ENDPOINT, action_result, headers=header_var,
                                                  method="post", data=data_var)
 
-        if (phantom.is_fail(ret_val)):
+        if phantom.is_fail(ret_val):
             self.debug_print("Failed to lookup hash for Airlock Digital")
             return action_result.get_status()
 
@@ -848,7 +848,7 @@ class AirlockDigitalConnector(BaseConnector):
         # Fetching the Python major version
         try:
             self._python_version = int(sys.version_info[0])
-        except:
+        except Exception:
             return self.set_status(phantom.APP_ERROR, "Error occurred while getting the Phantom server's Python major version.")
 
         self._base_url = self._handle_py_ver_compat_for_input_str(config.get('base_url'))
@@ -869,6 +869,7 @@ class AirlockDigitalConnector(BaseConnector):
 if __name__ == '__main__':
 
     import argparse
+    from sys import exit
 
     import pudb
 
@@ -886,13 +887,13 @@ if __name__ == '__main__':
     username = args.username
     password = args.password
 
-    if (username is not None and password is None):
+    if username is not None and password is None:
 
         # User specified a username but not a password, so ask
         import getpass
         password = getpass.getpass("Password: ")
 
-    if (username and password):
+    if username and password:
         try:
             login_url = AirlockDigitalConnector._get_phantom_base_url() + '/login'
 
@@ -924,7 +925,7 @@ if __name__ == '__main__':
         connector = AirlockDigitalConnector()
         connector.print_progress_message = True
 
-        if (session_id is not None):
+        if session_id is not None:
             in_json['user_session_token'] = session_id
             connector._set_csrf_info(csrftoken, headers['Referer'])
 
