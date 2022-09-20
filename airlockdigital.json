@@ -21,7 +21,7 @@
     "python_version": "3",
     "main_module": "airlockdigital_connector.py",
     "min_phantom_version": "5.3.3",
-    "fips_compliant": true,
+    "fips_compliant": false,
     "app_wizard_version": "1.0.0",
     "configuration": {
         "apiKey": {
