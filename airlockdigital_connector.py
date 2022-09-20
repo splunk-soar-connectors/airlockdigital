@@ -74,7 +74,7 @@ class AirlockDigitalConnector(BaseConnector):
             self.save_progress("Failed to parse json naturally")
             try:
                 resp_json = json.loads(self._handle_py_ver_compat_for_input_str(r.text).replace("\\", "\\\\"))
-            except Exception:
+            except Exception as e:
                 return RetVal(action_result.set_status(phantom.APP_ERROR, "Unable to parse JSON response. {0}"
                               .format(self._get_error_message_from_exception(e))), None)
 
