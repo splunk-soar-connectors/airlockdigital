@@ -1806,7 +1806,7 @@
                     "data_path": "action_result.status",
                     "data_type": "string",
                     "column_name": "Status",
-                    "column_order": 25,
+                    "column_order": 24,
                     "example_values": [
                         "success",
                         "failed"
@@ -2041,19 +2041,19 @@
                     "data_path": "action_result.summary",
                     "data_type": "string",
                     "column_name": "Summary",
-                    "column_order": 24
+                    "column_order": 23
                 },
                 {
                     "data_path": "action_result.message",
                     "data_type": "string",
                     "column_name": "Message",
-                    "column_order": 26
+                    "column_order": 25
                 },
                 {
                     "data_path": "summary.total_objects",
                     "data_type": "numeric",
                     "column_name": "Total Objects",
-                    "column_order": 27,
+                    "column_order": 26,
                     "example_values": [
                         20
                     ]
@@ -2062,7 +2062,7 @@
                     "data_path": "summary.total_objects_successful",
                     "data_type": "numeric",
                     "column_name": "Total Objects Successful",
-                    "column_order": 28,
+                    "column_order": 27,
                     "example_values": [
                         10
                     ]
