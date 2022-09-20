@@ -2,17 +2,16 @@
 #
 # Licensed under Apache 2.0 (https://www.apache.org/licenses/LICENSE-2.0.txt)
 
-# Phantom App imports
-import phantom.app as phantom
-from phantom.base_connector import BaseConnector
-from phantom.action_result import ActionResult
-
-# This connector imports
-from airlockdigital_consts import *
-import requests
 import json
-from bs4 import BeautifulSoup, UnicodeDammit
 import sys
+
+import phantom.app as phantom
+import requests
+from bs4 import BeautifulSoup, UnicodeDammit
+from phantom.action_result import ActionResult
+from phantom.base_connector import BaseConnector
+
+from airlockdigital_consts import *
 
 
 class RetVal(tuple):
@@ -39,7 +38,8 @@ class AirlockDigitalConnector(BaseConnector):
         if response.status_code == 200:
             return RetVal(phantom.APP_SUCCESS, {})
 
-        return RetVal(action_result.set_status(phantom.APP_ERROR, "Status Code: {0}. Empty response and no information in the header".format(response.status_code)), None)
+        return RetVal(action_result.set_status(phantom.APP_ERROR, "Status Code: {0}. Empty response and no information in the header".format
+                                               (response.status_code)), None)
 
     def _process_html_response(self, response, action_result):
 
@@ -69,12 +69,12 @@ class AirlockDigitalConnector(BaseConnector):
         # Try a json parse
         try:
             resp_json = r.json()
-        except Exception as e:
+        except:
             # If I can't parse the json
             self.save_progress("Failed to parse json naturally")
             try:
                 resp_json = json.loads(self._handle_py_ver_compat_for_input_str(r.text).replace("\\", "\\\\"))
-            except Exception as e:
+            except:
                 return RetVal(action_result.set_status(phantom.APP_ERROR, "Unable to parse JSON response. {0}"
                               .format(self._get_error_message_from_exception(e))), None)
 
@@ -483,7 +483,8 @@ class AirlockDigitalConnector(BaseConnector):
             req_method = "post"
 
         else:
-            return action_result.set_status(phantom.APP_ERROR, "Invalid policy type, please provide policy type either application, baseline, group, or blocklist")
+            return action_result.set_status(phantom.APP_ERROR,
+                          "Invalid policy type, please provide policy type either application, baseline, group, or blocklist")
 
         # Make the request
         self.save_progress("Making request to URL: {} with request type of {}.".format(url, policy_type))
@@ -660,12 +661,14 @@ class AirlockDigitalConnector(BaseConnector):
         if len(param_var.keys()) >= 1:
             if param_var["hostname"] != "all":
                 self.save_progress("Requested parameters: {}".format(param_var))
-                ret_val, response = self._make_rest_call(AIRLOCK_AGENT_FIND_ENDPOINT, action_result, json=param_var, headers=self._header_var, method="post")
+                ret_val, response = self._make_rest_call(AIRLOCK_AGENT_FIND_ENDPOINT, action_result,
+                                                         json=param_var, headers=self._header_var, method="post")
             else:
                 param_var.pop('hostname')
                 self.save_progress("Requested parameters: {}".format(param_var))
                 self.save_progress("All has been specified in hostname, so returning all hosts")
-                ret_val, response = self._make_rest_call(AIRLOCK_AGENT_FIND_ENDPOINT, action_result, headers=self._header_var, method="post")
+                ret_val, response = self._make_rest_call(AIRLOCK_AGENT_FIND_ENDPOINT, action_result,
+                                                         headers=self._header_var, method="post")
 
         if (phantom.is_fail(ret_val)):
             self.debug_print('Failed to list endpoints for Airlock Digital')
@@ -697,7 +700,8 @@ class AirlockDigitalConnector(BaseConnector):
             "otpid": otpid
         }
         # make rest call
-        ret_val, response = self._make_rest_call(AIRLOCK_OTP_REVOKE_ENDPOINT, action_result, params=param_var, headers=self._header_var, method="post")
+        ret_val, response = self._make_rest_call(AIRLOCK_OTP_REVOKE_ENDPOINT, action_result,
+                                                 params=param_var, headers=self._header_var, method="post")
 
         if (phantom.is_fail(ret_val)):
             self.debug_print("Failed to revoke OTP for Airlock Digital")
@@ -732,7 +736,8 @@ class AirlockDigitalConnector(BaseConnector):
         }
 
         # make rest call
-        ret_val, response = self._make_rest_call(AIRLOCK_OTP_RETRIEVE_ENDPOINT, action_result, params=param_var, headers=self._header_var, method="post")
+        ret_val, response = self._make_rest_call(AIRLOCK_OTP_RETRIEVE_ENDPOINT, action_result, params=param_var,
+                                                 headers=self._header_var, method="post")
 
         if (phantom.is_fail(ret_val)):
             self.debug_print("Failed to retrieve OTP for Airlock Digital")
@@ -773,7 +778,8 @@ class AirlockDigitalConnector(BaseConnector):
         data_var = json.dumps(data_var)
 
         # make rest call
-        ret_val, response = self._make_rest_call(AIRLOCK_HASH_QUERY_ENDPOINT, action_result, headers=header_var, method="post", data=data_var)
+        ret_val, response = self._make_rest_call(AIRLOCK_HASH_QUERY_ENDPOINT, action_result, headers=header_var,
+                                                 method="post", data=data_var)
 
         if (phantom.is_fail(ret_val)):
             self.debug_print("Failed to lookup hash for Airlock Digital")
@@ -862,8 +868,9 @@ class AirlockDigitalConnector(BaseConnector):
 
 if __name__ == '__main__':
 
-    import pudb
     import argparse
+
+    import pudb
 
     pudb.set_trace()
 
