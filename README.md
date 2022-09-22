@@ -2,11 +2,11 @@
 # Airlock Digital
 
 Publisher: Domenico Perre & Airlock Digital Pty Ltd  
-Connector Version: 1\.0\.2  
+Connector Version: 2\.0\.0  
 Product Vendor: Airlock  
 Product Name: Airlock Digital  
 Product Version Supported (regex): "\.\*"  
-Minimum Product Version: 5\.3\.0  
+Minimum Product Version: 5\.3\.3  
 
 This app provides investigative, containment, and management actions for Airlock Digital's Execution Control & Allow listing endpoint product
 
@@ -63,10 +63,10 @@ PARAMETER | REQUIRED | DESCRIPTION | TYPE | CONTAINS
 #### Action Output
 DATA PATH | TYPE | CONTAINS
 --------- | ---- | --------
-action\_result\.parameter\.hash | string |  `sha256` 
-action\_result\.parameter\.blocklistid | string |  `airlockdigital blocklistid` 
-action\_result\.data\.error | string | 
 action\_result\.status | string | 
+action\_result\.parameter\.blocklistid | string |  `airlockdigital blocklistid` 
+action\_result\.parameter\.hash | string |  `sha256` 
+action\_result\.data\.error | string | 
 action\_result\.summary | string | 
 action\_result\.message | string | 
 summary\.total\_objects | numeric | 
@@ -89,10 +89,10 @@ PARAMETER | REQUIRED | DESCRIPTION | TYPE | CONTAINS
 #### Action Output
 DATA PATH | TYPE | CONTAINS
 --------- | ---- | --------
-action\_result\.parameter\.hash | string |  `sha256` 
-action\_result\.parameter\.applicationid | string |  `airlockdigital applicationid` 
-action\_result\.data\.error | string | 
 action\_result\.status | string | 
+action\_result\.parameter\.applicationid | string |  `airlockdigital applicationid` 
+action\_result\.parameter\.hash | string |  `sha256` 
+action\_result\.data\.error | string | 
 action\_result\.summary | string | 
 action\_result\.message | string | 
 summary\.total\_objects | numeric | 
@@ -114,12 +114,12 @@ PARAMETER | REQUIRED | DESCRIPTION | TYPE | CONTAINS
 #### Action Output
 DATA PATH | TYPE | CONTAINS
 --------- | ---- | --------
+action\_result\.status | string | 
 action\_result\.parameter\.policy\_type | string |  `airlockdigital policytype` 
 action\_result\.data\.\*\.id | string | 
 action\_result\.data\.\*\.name | string | 
 action\_result\.data\.\*\.parent | string | 
 action\_result\.data\.\*\.type | string |  `airlockdigital policytype` 
-action\_result\.status | string | 
 action\_result\.summary | string | 
 action\_result\.message | string | 
 summary\.total\_objects | numeric | 
@@ -141,20 +141,21 @@ PARAMETER | REQUIRED | DESCRIPTION | TYPE | CONTAINS
 #### Action Output
 DATA PATH | TYPE | CONTAINS
 --------- | ---- | --------
+action\_result\.status | string | 
 action\_result\.parameter\.group\_id | string |  `airlockdigital groupid` 
-action\_result\.data\.\*\.response\.applications\.\*\.applicationid | string |  `airlockdigital applicationid` 
 action\_result\.data\.\*\.response\.agentstopcode | string | 
-action\_result\.data\.\*\.response\.auditmode | numeric | 
+action\_result\.data\.\*\.response\.applications\.\*\.applicationid | string |  `airlockdigital applicationid` 
 action\_result\.data\.\*\.response\.applications\.\*\.name | string | 
-action\_result\.data\.\*\.response\.batch | numeric | 
+action\_result\.data\.\*\.response\.auditmode | numeric | 
 action\_result\.data\.\*\.response\.baselines\.\*\.baselineid | string | 
-action\_result\.data\.\*\.response\.blocklists\.\*\.blocklistid | string |  `airlockdigital blocklistid` 
 action\_result\.data\.\*\.response\.baselines\.\*\.name | string | 
+action\_result\.data\.\*\.response\.batch | numeric | 
+action\_result\.data\.\*\.response\.blocklists\.\*\.blocklistid | string |  `airlockdigital blocklistid` 
 action\_result\.data\.\*\.response\.blocklists\.\*\.name | string | 
 action\_result\.data\.\*\.response\.command | numeric | 
-action\_result\.data\.\*\.response\.commlistid | string | 
-action\_result\.data\.\*\.response\.commlist\.\*\.name | string | 
 action\_result\.data\.\*\.response\.commlist\.\*\.ip | string |  `ip` 
+action\_result\.data\.\*\.response\.commlist\.\*\.name | string | 
+action\_result\.data\.\*\.response\.commlistid | string | 
 action\_result\.data\.\*\.response\.enable\_notifications | numeric | 
 action\_result\.data\.\*\.response\.groupid | string |  `airlockdigital groupid` 
 action\_result\.data\.\*\.response\.hashdb\_ver | numeric | 
@@ -164,25 +165,24 @@ action\_result\.data\.\*\.response\.javascript | numeric |
 action\_result\.data\.\*\.response\.name | string | 
 action\_result\.data\.\*\.response\.notification\_message | string | 
 action\_result\.data\.\*\.response\.parent | string | 
+action\_result\.data\.\*\.response\.paths\.\*\.name | string | 
 action\_result\.data\.\*\.response\.policyver | numeric | 
 action\_result\.data\.\*\.response\.poll\_time | numeric | 
 action\_result\.data\.\*\.response\.powershell | numeric | 
-action\_result\.data\.\*\.response\.pslockdown | numeric | 
-action\_result\.data\.\*\.response\.python | numeric | 
-action\_result\.data\.\*\.response\.proxyenabled | numeric | 
-action\_result\.data\.\*\.response\.proxyserver | string | 
-action\_result\.data\.\*\.response\.proxyport | string | 
 action\_result\.data\.\*\.response\.proxyauth | numeric | 
-action\_result\.data\.\*\.response\.proxyuser | string |  `user name` 
+action\_result\.data\.\*\.response\.proxyenabled | numeric | 
 action\_result\.data\.\*\.response\.proxypass | string | 
+action\_result\.data\.\*\.response\.proxyport | string | 
+action\_result\.data\.\*\.response\.proxyserver | string | 
+action\_result\.data\.\*\.response\.proxyuser | string |  `user name` 
+action\_result\.data\.\*\.response\.pslockdown | numeric | 
 action\_result\.data\.\*\.response\.publishers\.\*\.name | string | 
-action\_result\.data\.\*\.response\.paths\.\*\.name | string | 
+action\_result\.data\.\*\.response\.python | numeric | 
 action\_result\.data\.\*\.response\.script\_enabled | numeric | 
 action\_result\.data\.\*\.response\.trusted\_upload | numeric | 
 action\_result\.data\.\*\.response\.vbscript | numeric | 
 action\_result\.data\.\*\.response\.windowsinstaller | numeric | 
 action\_result\.data\.\*\.response\.windowsscriptcomponent | numeric | 
-action\_result\.status | string | 
 action\_result\.summary | string | 
 action\_result\.message | string | 
 summary\.total\_objects | numeric | 
@@ -205,10 +205,10 @@ PARAMETER | REQUIRED | DESCRIPTION | TYPE | CONTAINS
 #### Action Output
 DATA PATH | TYPE | CONTAINS
 --------- | ---- | --------
+action\_result\.status | string | 
 action\_result\.parameter\.agent\_id | string |  `airlockdigital agentid` 
 action\_result\.parameter\.group\_id | string |  `airlockdigital groupid` 
 action\_result\.data\.error | string | 
-action\_result\.status | string | 
 action\_result\.summary | string | 
 action\_result\.message | string | 
 summary\.total\_objects | numeric | 
@@ -232,11 +232,11 @@ PARAMETER | REQUIRED | DESCRIPTION | TYPE | CONTAINS
 #### Action Output
 DATA PATH | TYPE | CONTAINS
 --------- | ---- | --------
-action\_result\.parameter\.hash | string |  `sha256` 
+action\_result\.status | string | 
 action\_result\.parameter\.applicationid | string |  `airlockdigital applicationid` 
+action\_result\.parameter\.hash | string |  `sha256` 
 action\_result\.parameter\.path | string |  `file path` 
 action\_result\.data\.error | string | 
-action\_result\.status | string | 
 action\_result\.summary | string | 
 action\_result\.message | string | 
 summary\.total\_objects | numeric | 
@@ -259,12 +259,12 @@ PARAMETER | REQUIRED | DESCRIPTION | TYPE | CONTAINS
 #### Action Output
 DATA PATH | TYPE | CONTAINS
 --------- | ---- | --------
-action\_result\.parameter\.hash | string |  `sha256` 
-action\_result\.parameter\.blocklistid | string |  `airlockdigital blocklistid` 
-action\_result\.data\.error | string | 
 action\_result\.status | string | 
-action\_result\.message | string | 
+action\_result\.parameter\.blocklistid | string |  `airlockdigital blocklistid` 
+action\_result\.parameter\.hash | string |  `sha256` 
+action\_result\.data\.error | string | 
 action\_result\.summary | string | 
+action\_result\.message | string | 
 summary\.total\_objects | numeric | 
 summary\.total\_objects\_successful | numeric |   
 
@@ -291,13 +291,14 @@ PARAMETER | REQUIRED | DESCRIPTION | TYPE | CONTAINS
 #### Action Output
 DATA PATH | TYPE | CONTAINS
 --------- | ---- | --------
-action\_result\.parameter\.status | numeric |  `airlockdigital devicestatus` 
+action\_result\.status | string | 
 action\_result\.parameter\.agentid | string |  `airlockdigital agentid` 
-action\_result\.parameter\.hostname | string |  `host name` 
-action\_result\.parameter\.os | string |  `airlockdigital operatingsystem` 
-action\_result\.parameter\.groupid | string |  `airlockdigital groupid` 
 action\_result\.parameter\.domain | string |  `domain` 
+action\_result\.parameter\.groupid | string |  `airlockdigital groupid` 
+action\_result\.parameter\.hostname | string |  `host name` 
 action\_result\.parameter\.ip | string |  `ip` 
+action\_result\.parameter\.os | string |  `airlockdigital operatingsystem` 
+action\_result\.parameter\.status | numeric |  `airlockdigital devicestatus` 
 action\_result\.parameter\.username | string |  `user name` 
 action\_result\.data\.\*\.agentid | string |  `airlockdigital agentid` 
 action\_result\.data\.\*\.clientversion | string | 
@@ -310,7 +311,6 @@ action\_result\.data\.\*\.os | string |  `airlockdigital operatingsystem`
 action\_result\.data\.\*\.policyversion | string | 
 action\_result\.data\.\*\.status | numeric |  `airlockdigital devicestatus` 
 action\_result\.data\.\*\.username | string |  `user name` 
-action\_result\.status | string | 
 action\_result\.summary | string | 
 action\_result\.message | string | 
 summary\.total\_objects | numeric | 
@@ -332,9 +332,9 @@ PARAMETER | REQUIRED | DESCRIPTION | TYPE | CONTAINS
 #### Action Output
 DATA PATH | TYPE | CONTAINS
 --------- | ---- | --------
+action\_result\.status | string | 
 action\_result\.parameter\.otpid | string |  `airlockdigital otpid` 
 action\_result\.data\.error | string | 
-action\_result\.status | string | 
 action\_result\.summary | string | 
 action\_result\.message | string | 
 summary\.total\_objects | numeric | 
@@ -358,13 +358,13 @@ PARAMETER | REQUIRED | DESCRIPTION | TYPE | CONTAINS
 #### Action Output
 DATA PATH | TYPE | CONTAINS
 --------- | ---- | --------
+action\_result\.status | string | 
 action\_result\.parameter\.agentid | string |  `airlockdigital agentid` 
-action\_result\.parameter\.purpose | string |  `airlockdigital otpreason` 
 action\_result\.parameter\.duration | string |  `airlockdigital otpduration` 
-action\_result\.data\.error | string | 
+action\_result\.parameter\.purpose | string |  `airlockdigital otpreason` 
 action\_result\.data\.\*\.response\.otpcode | string | 
 action\_result\.data\.\*\.response\.otpid | string |  `airlockdigital otpid` 
-action\_result\.status | string | 
+action\_result\.data\.error | string | 
 action\_result\.summary | string | 
 action\_result\.message | string | 
 summary\.total\_objects | numeric | 
@@ -386,32 +386,31 @@ PARAMETER | REQUIRED | DESCRIPTION | TYPE | CONTAINS
 #### Action Output
 DATA PATH | TYPE | CONTAINS
 --------- | ---- | --------
+action\_result\.status | string | 
 action\_result\.parameter\.hash | string |  `sha256` 
 action\_result\.data\.\*\.response\.results\.\*\.data\.createtime | string | 
 action\_result\.data\.\*\.response\.results\.\*\.data\.datetime | string | 
 action\_result\.data\.\*\.response\.results\.\*\.data\.description | string | 
-action\_result\.data\.\*\.response\.results\.\*\.data\.filesize | string |  `file size` 
-action\_result\.data\.\*\.response\.results\.\*\.data\.filepath | string |  `file path` 
 action\_result\.data\.\*\.response\.results\.\*\.data\.filename | string |  `file name` 
+action\_result\.data\.\*\.response\.results\.\*\.data\.filepath | string |  `file path` 
+action\_result\.data\.\*\.response\.results\.\*\.data\.filesize | string |  `file size` 
 action\_result\.data\.\*\.response\.results\.\*\.data\.md5 | string |  `md5` 
 action\_result\.data\.\*\.response\.results\.\*\.data\.modtime | string | 
 action\_result\.data\.\*\.response\.results\.\*\.data\.origname | string |  `file name` 
-action\_result\.data\.\*\.response\.results\.\*\.data\.publisher | string | 
 action\_result\.data\.\*\.response\.results\.\*\.data\.productname | string | 
 action\_result\.data\.\*\.response\.results\.\*\.data\.productversion | string | 
+action\_result\.data\.\*\.response\.results\.\*\.data\.publisher | string | 
 action\_result\.data\.\*\.response\.results\.\*\.data\.reputation\.lastseen | string | 
-action\_result\.data\.\*\.response\.results\.\*\.data\.reputation\.status | string | 
-action\_result\.data\.\*\.response\.results\.\*\.data\.reputation\.scannermatch | string | 
 action\_result\.data\.\*\.response\.results\.\*\.data\.reputation\.scannercount | string | 
-action\_result\.data\.\*\.response\.results\.\*\.data\.reputation\.threatname | string | 
+action\_result\.data\.\*\.response\.results\.\*\.data\.reputation\.scannermatch | string | 
+action\_result\.data\.\*\.response\.results\.\*\.data\.reputation\.status | string | 
 action\_result\.data\.\*\.response\.results\.\*\.data\.reputation\.threatlevel | string | 
+action\_result\.data\.\*\.response\.results\.\*\.data\.reputation\.threatname | string | 
 action\_result\.data\.\*\.response\.results\.\*\.data\.reputation\.timestamp | string | 
 action\_result\.data\.\*\.response\.results\.\*\.data\.sha128 | string | 
 action\_result\.data\.\*\.response\.results\.\*\.data\.sha384 | string | 
 action\_result\.data\.\*\.response\.results\.\*\.data\.sha512 | string | 
-action\_result\.datetime | string | 
-action\_result\.status | string | 
-action\_result\.message | string | 
 action\_result\.summary | string | 
+action\_result\.message | string | 
 summary\.total\_objects | numeric | 
 summary\.total\_objects\_successful | numeric | 
