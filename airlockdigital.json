@@ -15,8 +15,8 @@
         }
     ],
     "license": "Copyright (c) Domenico Perre & Airlock Digital Pty Ltd, 2020-2022",
-    "app_version": "2.0.0",
-    "utctime_updated": "2022-01-07T20:26:14.000000Z",
+    "app_version": "2.0.1",
+    "utctime_updated": "2025-04-29T17:44:18.493462Z",
     "package_name": "phantom_airlockdigital",
     "python_version": "3",
     "main_module": "airlockdigital_connector.py",
