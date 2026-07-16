@@ -1,9 +1,9 @@
 # Airlock Digital
 
-Publisher: Domenico Perre & Airlock Digital Pty Ltd \
-Connector Version: 2.0.1 \
-Product Vendor: Airlock \
-Product Name: Airlock Digital \
+Publisher: Domenico Perre & Airlock Digital Pty Ltd <br>
+Connector Version: 2.0.1 <br>
+Product Vendor: Airlock <br>
+Product Name: Airlock Digital <br>
 Minimum Product Version: 5.3.3
 
 This app provides investigative, containment, and management actions for Airlock Digital's Execution Control & Allow listing endpoint product
@@ -19,24 +19,24 @@ VARIABLE | REQUIRED | TYPE | DESCRIPTION
 
 ### Supported Actions
 
-[test connectivity](#action-test-connectivity) - Validate the asset configuration for connectivity using supplied configuration \
-[unblock hash](#action-unblock-hash) - Unblock (remove) hashes from one or more Blocklist policies \
-[disallow hash](#action-disallow-hash) - Disallow (remove) hashes from one or more Application Captures \
-[list identifiers](#action-list-identifiers) - Gathers a list of identifiers which are required for referencing groups, applications, baselines, or blocklists in other actions \
-[list policy](#action-list-policy) - List the policy configuration of a specified group \
-[move endpoint](#action-move-endpoint) - Moves an endpoint from one group to another \
-[allow hash](#action-allow-hash) - Allow (add) hashes in an Application Capture policy \
-[block hash](#action-block-hash) - Block (add) hashes in a Blocklist policy \
-[list endpoints](#action-list-endpoints) - List all the registered agents \
-[revoke otp](#action-revoke-otp) - Revoke the One Time Password \
-[retrieve otp](#action-retrieve-otp) - Retrieve the One Time Password \
+[test connectivity](#action-test-connectivity) - Validate the asset configuration for connectivity using supplied configuration <br>
+[unblock hash](#action-unblock-hash) - Unblock (remove) hashes from one or more Blocklist policies <br>
+[disallow hash](#action-disallow-hash) - Disallow (remove) hashes from one or more Application Captures <br>
+[list identifiers](#action-list-identifiers) - Gathers a list of identifiers which are required for referencing groups, applications, baselines, or blocklists in other actions <br>
+[list policy](#action-list-policy) - List the policy configuration of a specified group <br>
+[move endpoint](#action-move-endpoint) - Moves an endpoint from one group to another <br>
+[allow hash](#action-allow-hash) - Allow (add) hashes in an Application Capture policy <br>
+[block hash](#action-block-hash) - Block (add) hashes in a Blocklist policy <br>
+[list endpoints](#action-list-endpoints) - List all the registered agents <br>
+[revoke otp](#action-revoke-otp) - Revoke the One Time Password <br>
+[retrieve otp](#action-retrieve-otp) - Retrieve the One Time Password <br>
 [lookup hash](#action-lookup-hash) - Lookup SHA256 hash
 
 ## action: 'test connectivity'
 
 Validate the asset configuration for connectivity using supplied configuration
 
-Type: **test** \
+Type: **test** <br>
 Read only: **True**
 
 This endpoint will test connectivity with an Airlock Digital server.
@@ -53,7 +53,7 @@ No Output
 
 Unblock (remove) hashes from one or more Blocklist policies
 
-Type: **correct** \
+Type: **correct** <br>
 Read only: **False**
 
 This action will unblock hashes from one or more Blocklist policies. This is useful if you want to 'un-ban' a particular hash value.
@@ -82,7 +82,7 @@ summary.total_objects_successful | numeric | | 10 |
 
 Disallow (remove) hashes from one or more Application Captures
 
-Type: **contain** \
+Type: **contain** <br>
 Read only: **False**
 
 This action will allow you to remove hashes for an existing Application Capture that exists on the Airlock Server.
@@ -111,7 +111,7 @@ summary.total_objects_successful | numeric | | 10 |
 
 Gathers a list of identifiers which are required for referencing groups, applications, baselines, or blocklists in other actions
 
-Type: **investigate** \
+Type: **investigate** <br>
 Read only: **True**
 
 This action gathers the identifiers which reference the groups, applications, baselines, or blocklists within Airlock. These identifiers are required to call other actions within the Phantom in order to interact with the Airlock Server.
@@ -141,7 +141,7 @@ summary.total_objects_successful | numeric | | 10 |
 
 List the policy configuration of a specified group
 
-Type: **investigate** \
+Type: **investigate** <br>
 Read only: **True**
 
 This action will return the policy configurations that are applied to the specified group, the group in this action is referenced by the Group ID.
@@ -207,7 +207,7 @@ summary.total_objects_successful | numeric | | 10 |
 
 Moves an endpoint from one group to another
 
-Type: **generic** \
+Type: **generic** <br>
 Read only: **False**
 
 This action moves an enforcement agent registration from one group within Airlock to another. This requires the destination Group ID to be referenced in the request as the 'target'. The source group does not need to be specified.
@@ -236,7 +236,7 @@ summary.total_objects_successful | numeric | | 10 |
 
 Allow (add) hashes in an Application Capture policy
 
-Type: **correct** \
+Type: **correct** <br>
 Read only: **False**
 
 This endpoint allows for the submission of a SHA256 hash value into an existing Application Capture policy.
@@ -267,7 +267,7 @@ summary.total_objects_successful | numeric | | 10 |
 
 Block (add) hashes in a Blocklist policy
 
-Type: **contain** \
+Type: **contain** <br>
 Read only: **False**
 
 This action allows you to add hashes to a Blocklist policy. By adding a hash into a Blocklist policy that is approved, it has the result of blocking the hash on endpoints within your environment.
@@ -296,7 +296,7 @@ summary.total_objects_successful | numeric | | 10 |
 
 List all the registered agents
 
-Type: **investigate** \
+Type: **investigate** <br>
 Read only: **True**
 
 This endpoint will simply return a listing of registered agents from the Airlock Server. This list can be filtered based on certain criteria.
@@ -347,7 +347,7 @@ summary.total_objects_successful | numeric | | 10 |
 
 Revoke the One Time Password
 
-Type: **generic** \
+Type: **generic** <br>
 Read only: **False**
 
 Revoke an active OTP code by specifying the 'otpid' you want to revoke.
@@ -374,7 +374,7 @@ summary.total_objects_successful | numeric | | 10 |
 
 Retrieve the One Time Password
 
-Type: **generic** \
+Type: **generic** <br>
 Read only: **False**
 
 Retrieve an OTP code for a particular computer (agent) within Airlock. You must specify the OTP 'duration' and unique 'agentid' to retrieve the code. Unique 'agentid' parameters can be obtained from the /agent/find endpoint.
@@ -407,7 +407,7 @@ summary.total_objects_successful | numeric | | 10 |
 
 Lookup SHA256 hash
 
-Type: **investigate** \
+Type: **investigate** <br>
 Read only: **True**
 
 Query the Airlock file repository by specifying the hash value(s) you would like to lookup. NOTE: Only SHA256 hashes are supported.
@@ -455,7 +455,7 @@ ______________________________________________________________________
 
 Auto-generated Splunk SOAR Connector documentation.
 
-Copyright 2025 Splunk Inc.
+Copyright 2026 Splunk Inc.
 
 Licensed under the Apache License, Version 2.0 (the "License");
 you may not use this file except in compliance with the License.

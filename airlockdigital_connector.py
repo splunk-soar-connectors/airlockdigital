@@ -1,4 +1,4 @@
-# Copyright (c) 2025 Splunk Inc.
+# Copyright (c) 2025-2026 Splunk Inc.
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -243,7 +243,7 @@ class AirlockDigitalConnector(BaseConnector):
         self.save_progress("Connecting to endpoint")
 
         # make rest call
-        ret_val, response = self._make_rest_call(url, action_result, params=None, headers=self._header_var, method="post")
+        ret_val, _response = self._make_rest_call(url, action_result, params=None, headers=self._header_var, method="post")
 
         if phantom.is_fail(ret_val):
             self.save_progress("Test Connectivity Failed")
