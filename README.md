@@ -16,6 +16,7 @@ VARIABLE | REQUIRED | TYPE | DESCRIPTION
 -------- | -------- | ---- | -----------
 **apiKey** | required | password | Airlock API Key |
 **base_url** | required | string | Airlock Digital REST API URL |
+**verify_server_cert** | optional | boolean | Verify the Airlock Digital server certificate |
 
 ### Supported Actions
 

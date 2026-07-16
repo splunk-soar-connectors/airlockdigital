@@ -218,7 +218,7 @@ class AirlockDigitalConnector(BaseConnector):
         url = f"{self._base_url}{endpoint}"
 
         try:
-            r = request_func(url, verify=config.get("verify_server_cert", False), **kwargs)
+            r = request_func(url, verify=config.get("verify_server_cert", True), **kwargs)
         except requests.exceptions.InvalidSchema:
             error_message = f"Error connecting to server. No connection adapters were found for {url}"
             return RetVal(action_result.set_status(phantom.APP_ERROR, error_message), resp_json)
