@@ -1,7 +1,7 @@
 # Airlock Digital
 
 Publisher: Domenico Perre & Airlock Digital Pty Ltd <br>
-Connector Version: 2.0.1 <br>
+Connector Version: 2.0.2 <br>
 Product Vendor: Airlock <br>
 Product Name: Airlock Digital <br>
 Minimum Product Version: 5.3.3
