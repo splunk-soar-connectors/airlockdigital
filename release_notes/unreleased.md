@@ -1,1 +1,3 @@
 **Unreleased**
+
+* Verify Airlock Digital server certificates by default, with an explicit asset setting to opt out.

@@ -36,6 +36,13 @@
             "required": true,
             "default": "https://[airlockservername.com]:3129/v1",
             "order": 1
+        },
+        "verify_server_cert": {
+            "description": "Verify the Airlock Digital server certificate",
+            "data_type": "boolean",
+            "required": false,
+            "default": true,
+            "order": 2
         }
     },
     "actions": [
@@ -2075,6 +2082,14 @@
         }
     ],
     "pip39_dependencies": {
+        "wheel": [
+            {
+                "module": "chardet",
+                "input_file": "wheels/shared/chardet-3.0.4-py2.py3-none-any.whl"
+            }
+        ]
+    },
+    "pip313_dependencies": {
         "wheel": [
             {
                 "module": "chardet",
